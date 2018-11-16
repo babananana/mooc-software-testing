@@ -3,6 +3,12 @@ package tudelft.chocolate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+// 4 partitions:
+//   1. desired total kgs is higher than available bars
+//   2. desired total kgs can be created without small bars
+//   3. desired total kgs can be created without big bars
+//   4. desired total kgs cannot be created due to too less small available bars
+
 public class ChocolateBagsBeforeBoundaryTest {
     @Test
     public void totalIsBiggerThanAmountOfBars() {
@@ -27,5 +33,11 @@ public class ChocolateBagsBeforeBoundaryTest {
     public void onlySmallBars() {
         int result = new ChocolateBags().calculate(4, 2, 3);
         Assertions.assertEquals(3, result);
+    }
+
+    @Test
+    public void justEnoughBarsAvailable() {
+        int result = new ChocolateBags().calculate(2, 3, 17);
+        Assertions.assertEquals(2, result);
     }
 }
